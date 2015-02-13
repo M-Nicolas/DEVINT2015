@@ -23,7 +23,7 @@ public class MenuJeu extends MenuAbstrait {
      * vous pouvez définir autant d'options que vous voulez
      **/
 	protected String[] nomOptions() {
-		String[] noms = {"Fenêtre simple","Jeu","Gestion du son","Fichier des scores","Gestion d'image","Quitter"};
+		String[] noms = {"Test ICI","Jeu","Gestion du son","Fichier des scores","Gestion d'image","Quitter"};
 		return noms;
 	}
 
