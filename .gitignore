@@ -1,0 +1,7 @@
+*.class
+*.txt
+*.bat
+.classpath
+.project
+.settings
+doc
