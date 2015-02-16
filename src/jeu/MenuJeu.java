@@ -34,7 +34,7 @@ public class MenuJeu extends MenuAbstrait {
 	protected void lancerOption(int i) {
 		switch (i){  
 		case 0 : new FenetreSimple("Fenêtre simple");break;
-		case 1 : new FenetreSimple("Exo à rendre");break;
+		case 1 : new ExoARendre("Exo à rendre");break;
 		case 2 : new Jeu(nomJeu);break;
 		case 3 : new GestionSon("Gestion du son");break;
 		case 4 : new FichierScore("Ecriture dans un fichier");break;
