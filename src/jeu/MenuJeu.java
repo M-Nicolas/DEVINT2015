@@ -23,7 +23,8 @@ public class MenuJeu extends MenuAbstrait {
      * vous pouvez définir autant d'options que vous voulez
      **/
 	protected String[] nomOptions() {
-		String[] noms = {"Test LA","Jeu","Gestion du son","Fichier des scores","Gestion d'image","Quitter"};
+		String[] noms = {"Fenêtre simple","Exo à rendre","Jeu","Gestion du son","Fichier des scores",
+				"Gestion d'image","Quitter"};
 		return noms;
 	}
 
@@ -33,11 +34,12 @@ public class MenuJeu extends MenuAbstrait {
 	protected void lancerOption(int i) {
 		switch (i){  
 		case 0 : new FenetreSimple("Fenêtre simple");break;
-		case 1 : new Jeu(nomJeu);break;
-		case 2 : new GestionSon("Gestion du son");break;
-		case 3 : new FichierScore("Ecriture dans un fichier");break;
-		case 4 : new GestionImage("Exemple d'image");break;
-		case 5 : System.exit(0);
+		case 1 : new FenetreSimple("Exo à rendre");break;
+		case 2 : new Jeu(nomJeu);break;
+		case 3 : new GestionSon("Gestion du son");break;
+		case 4 : new FichierScore("Ecriture dans un fichier");break;
+		case 5 : new GestionImage("Exemple d'image");break;
+		case 6 : System.exit(0);
 		default: System.err.println("action non définie");
 		}
 	} 
