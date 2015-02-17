@@ -23,8 +23,9 @@ public class ExoARendre extends FenetreAbstraite implements ActionListener{
     	super(title);
      }
     
-	protected  String wavAccueil() {
-		return "../ressources/sons/accueil.wav";
+    @Override
+	protected String wavAccueil() {
+    	return "../ressources/sons/vide.wav";
 	}
 	
 	protected  String wavRegleJeu() {
@@ -40,6 +41,7 @@ public class ExoARendre extends FenetreAbstraite implements ActionListener{
     	String text = "I'm just... Just a Raven hiding in the veil of night. Just"
     			+ "a skeleton beneath the waves, I want to die... - Derivation D -"
     			+ "Verset 6 - Acte 3 - Drakengard 3";
+    	voix.playText(text);
      	JTextArea textArea = new JTextArea (text);
      	textArea.setWrapStyleWord(true);
     	lb1 = textArea; 
@@ -88,6 +90,8 @@ public class ExoARendre extends FenetreAbstraite implements ActionListener{
 		Color foreground = pref.getCurrentForegroundColor();
 		lb1.setBackground(background);
 		lb1.setForeground(foreground);
+		background = pref.getCurrentBackgroundColor();
+		foreground = pref.getCurrentForegroundColor();
 		bouton.setBackground(background);
 		bouton.setForeground(foreground);
 	}
