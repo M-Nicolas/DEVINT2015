@@ -38,7 +38,7 @@ public class ExoARendre extends FenetreAbstraite implements ActionListener{
     protected void init() {
     	setLayout(new BorderLayout());
     	String text = "I'm just... Just a Raven hiding in the veil of night. Just"
-    			+ "a skeleton beneath the waves, i want to die... - Derivation D -"
+    			+ "a skeleton beneath the waves, I want to die... - Derivation D -"
     			+ "Verset 6 - Acte 3 - Drakengard 3";
      	JTextArea textArea = new JTextArea (text);
      	textArea.setWrapStyleWord(true);
