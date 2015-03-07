@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Scores</title>
+    <meta name="description" content="Adaptation de bit trip runner pour aveugle">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="library/bootstrap-3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+            color: white;
+            font-size: 40px;
+            background-color: #000000;
+           /* overflow-y : hidden;*/
+        }
+        h1{
+            text-align: center;
+            color : orangered;
+            font-size: 70px;
+        }
+        table{
+            border-color : grey;
+        }
+        table tr:first-of-type{
+            color: orangered;
+			text-align:center;
+        }
+    </style>
+
+    <link rel="stylesheet" href="library/bootstrap-3.1.1/css/bootstrap-theme.min.css">
+    <script src="js/config.js"></script>
+    <script src="library/jquery-2.1.0.min.js"></script>
+    <script src="library/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+    <script src="library/jQuery.jPlayer.2.5.0/jquery.jplayer.min.js"></script>
+    <script src="js/sound.js"></script>
+
+</head>
+
+<body onload="updateScores()">
+
+
+<!--
+<form>
+    <input id="sc" type="text"/>
+    <input onclick="testScore()" type="button">
+</form>
+-->
+
+<h1>Meilleurs scores</h1>
+<table id="scores" class="table table-bordered">
+</table>
+
+<script src="js/scores.js"></script>
+
+</body>
+</html>
