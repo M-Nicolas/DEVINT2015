@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Argyros</title>
+    <title>Clickator</title>
     <meta name="description" content="Adaptation de bit trip runner pour aveugle">
     <meta name="viewport" content="width=device-width">
 
@@ -95,10 +95,12 @@
 	//ICI TEST CANVAS
 	jQuery.noConflict();
 	jQuery('#gameArea').drawArc({
-	    draggable: true,
-	    fillStyle: "red",
+	    //draggable: true, //Pour dire si l'élément est drag and droppable
+	    layer:true,
+	    fillStyle: "red", //Couleur de remplissage
 	    x: 160, y: 100,
-	    radius: 50
+	    radius: 50,
+	    click: function(layer){alert('tu as cliquer sur le cercle GG');}
 	});
     </script>
 </body>
