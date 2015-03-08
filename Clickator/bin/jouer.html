@@ -42,7 +42,6 @@
 		.tdBouton{
 			padding:20px;
 		}
-			/* Start http://www.cursors-4u.com */ body, a:hover {cursor: url("http://cur.cursors-4u.net/others/oth-5/oth441.cur"), progress !important;} /* End http://www.cursors-4u.com */
 
 		#display{
 			margin:auto;
@@ -85,11 +84,22 @@
 
     <div class="container">
 	<div style='color:#FFF;'>TODO FAIRE LE JEU ICI</div>
+	<canvas id='gameArea'></canvas>
     </div>
     <script src="library/jquery-2.1.0.min.js"></script>
     <script src="library/bootstrap-3.1.1/js/bootstrap.min.js"></script>
     <script src="library/jQuery.jPlayer.2.5.0/jquery.jplayer.min.js"></script>
+    <script src="library/jCanvas.min.js"></script>
     <script src="js/config.js"></script>
-
+    <script>
+	//ICI TEST CANVAS
+	jQuery.noConflict();
+	jQuery('#gameArea').drawArc({
+	    draggable: true,
+	    fillStyle: "red",
+	    x: 160, y: 100,
+	    radius: 50
+	});
+    </script>
 </body>
 </html>
