@@ -31,6 +31,10 @@ var MenuJouer = function () {
                 event.preventDefault();
                 re_read();
                 break;
+	    case 114:
+		event.preventDefault();
+		//TODO ici gerer le changement de couleurs
+		break;
             //key up
             case 38:
                 event.preventDefault();
