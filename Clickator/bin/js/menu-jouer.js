@@ -31,10 +31,15 @@ var MenuJouer = function () {
                 event.preventDefault();
                 re_read();
                 break;
-	    case 114:
-		event.preventDefault();
-		//TODO ici gerer le changement de couleurs
-		break;
+			case 114:
+			// F3
+				event.preventDefault();
+				defaultColor++;
+				if (defaultColor > configBackgroundColorNSelec.length-1) {
+					defaultColor = 0;
+				}
+				menuColors();
+			break;
             //key up
             case 38:
                 event.preventDefault();
@@ -114,12 +119,20 @@ var MenuJouer = function () {
 		index_selectionne = getIndex(nomMenu);
         $("#" + nomMenu).attr("class", "selectionne");
         lire_son(getSoundAdress());
+		menuColors();
     }
 
     function update() {
         console.log("update");
         selectionMenu(getMenuSelectionne());
     }
+	
+	function menuColors() {
+			$(".nselectionne").css("background-color", configBackgroundColorNSelec[defaultColor]);
+			$(".selectionne").css("background-color", configBackgroundColorSelec[defaultColor]);
+			$(".nselectionne").css("color", configFontColorNSelec[defaultColor]);
+			$(".selectionne").css("color", configFontColorSelec[defaultColor]);
+	}
 
     function getSoundAdress() {
         switch (getMenuSelectionne()) {

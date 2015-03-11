@@ -16,6 +16,35 @@ var configMenu = {
     "menu_tutoriel1"   : "sounds/menu/menu-tutoriel1.ogg"
 };
 
+
+var configBackgroundColorNSelec = [
+	"#9BD7CA",
+	"#DD8A44",
+	"white"
+];
+
+var configBackgroundColorSelec = [
+	"blue",
+	"blue",
+	"purple"
+];
+
+var configFontColorNSelec = [
+	"black",
+	"black",
+	"black"
+];
+
+var configFontColorSelec = [
+	"white",
+	"white",
+	"white"
+];
+
+var defaultColor = 0;
+
+
+
 var configTuto = {
     "q_v_e_c_s"         : "sounds/tuto/tuto_quand_vous_entendrez_ce_son.ogg",
     "fleche_droite"         : "sounds/tuto/tuto_fleche_droite.ogg",
