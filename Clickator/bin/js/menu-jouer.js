@@ -31,8 +31,12 @@ var MenuJouer = function () {
                 event.preventDefault();
                 re_read();
                 break;
+	    //F3
 	    case 114:
 		event.preventDefault();
+		//alert('ici');
+		$(".selectionne").css("color","red");
+		$(".nselectionne").css("color","green");
 		//TODO ici gerer le changement de couleurs
 		break;
             //key up
