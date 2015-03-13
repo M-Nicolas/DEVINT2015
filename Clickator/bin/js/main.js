@@ -12,6 +12,20 @@ jQuery('#gameArea').drawArc({
     width: 0, height: 0,
     click: function(layer){jQuery("#gameArea").removeLayer(layer).drawLayers();}
 });
+
+for(var i=0;i<10;i++){
+    var xTEMP=Math.floor((Math.random() * 750) + 1);
+    var yTEMP=Math.floor((Math.random() * 350) + 1);
+    jQuery('#gameArea').drawArc({
+	//draggable: true, //Pour dire si l'élément est drag and droppable
+	layer:true,
+	x:xTEMP  , y: yTEMP,
+	fillStyle: 'rgb(204, 51, 51)',
+	radius: 25,
+	width: 0, height: 0,
+	click: function(layer){jQuery("#gameArea").removeLayer(layer).drawLayers();}
+    });
+}
 //jQuery(tmp).css({"display":"none"});
 //alert(tmp);
     
