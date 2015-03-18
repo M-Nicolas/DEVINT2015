@@ -10,23 +10,6 @@ var imageData;
 var pixel;
 var pixelColor;
 
-//alert("ici");
-//ICI TEST CANVAS
-/*
-jQuery('#gameArea').drawArc({
-    //draggable: true, //Pour dire si l'élément est drag and droppable
-    layer:true,
-    name:'myBox',
-    x: 160, y: 100,
-    fillStyle: 'rgb(204, 51, 51)',
-    radius: 25,
-    width: 0, height: 0,
-    click: function(layer){
-        jQuery("#gameArea").removeLayer(layer).drawLayers();
-    }
-});
-*/
-
 for(var i=0;i<10;i++){
     var xTEMP=Math.floor((Math.random() * 750) + 1);
     var yTEMP=Math.floor((Math.random() * 350) + 1);
@@ -42,25 +25,7 @@ for(var i=0;i<10;i++){
 	    }
 	}
     });
-}
-/*
-for(var i=0;i<10;i++){
-    var xTEMP=Math.floor((Math.random() * 750) + 1);
-    var yTEMP=Math.floor((Math.random() * 350) + 1);
-    jQuery('#gameArea').drawArc({
-	//draggable: true, //Pour dire si l'élément est drag and droppable
-	layer:true,
-	x:xTEMP  , y: yTEMP,
-	fillStyle: 'rgb(204, 51, 51)',
-	radius: 25,
-	width: 0, height: 0,
-	click: function(layer){
-	    jQuery("#gameArea").removeLayer(layer).drawLayers();
-	}
-    });
-}
-*/
-    
+}   
     /*Une animation de test
     jQuery('#gameArea').animateLayer('myBox', {
 	x: 150, y: 150,
@@ -74,7 +39,6 @@ for(var i=0;i<10;i++){
 	}, 'slow', 'swing');
       });
       */
-/*TODO faire le main du jeu*/
 
 jQuery(document).mousemove(function(e){
     canvasOffset = jQuery("#gameArea").offset();
@@ -88,11 +52,3 @@ function getPixelColor(){
     //pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
     return pixel;
 }
-
-/*
-var Main = function () {
-    'use strict';
-};
-var main = new Main();
-main.launchGame();
-*/
