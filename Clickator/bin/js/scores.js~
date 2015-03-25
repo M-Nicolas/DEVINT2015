@@ -27,7 +27,6 @@ Score.prototype = {
 	},
 
 	substract: function(points) {
-		this.combo.reset();
 		this.value -= points;
 		this.update();
 	},
