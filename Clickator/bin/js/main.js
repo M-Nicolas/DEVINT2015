@@ -9,6 +9,7 @@ var canvasY;
 var imageData;
 var pixel;
 var pixelColor;
+var scoring = new Score(3);
    
     /*Une animation de test
     jQuery('#gameArea').animateLayer('myBox', {
@@ -38,7 +39,7 @@ function getPixelColor(){
 }
 
 
-//setInterval(onTimerTick, /*33*/1000); // 33 milliseconds = ~ 30 frames per sec (loop game)
+setInterval(onTimerTick, /*33*/1000); // 33 milliseconds = ~ 30 frames per sec (loop game)
 
 var numMouton = 0;
 
@@ -57,6 +58,8 @@ function onTimerTick() {
 		var tmp = getPixelColor();
 		if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
 		    jQuery("#gameArea").removeLayer(layer).drawLayers();
+		    //alert("ici");
+		    scoring.add(500);
 		}
 	    }
 	});
