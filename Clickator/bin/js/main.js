@@ -9,8 +9,19 @@ var canvasY;
 var imageData;
 var pixel;
 var pixelColor;
+var widthScreen = jQuery(document).width();
+var heightScreen = jQuery(document).height();
 var scoring = new Score(3);
-   
+
+//alert(widthScreen*0.80);
+var tmp = Math.round(widthScreen*0.75);
+
+jQuery(".container").css("width",widthScreen);
+jQuery("#gameArea").attr("width",tmp);
+jQuery("#gameArea").attr("height",heightScreen*0.90);
+jQuery("#ScoreArea").css("height",heightScreen*0.90);
+jQuery("#ScoreArea").attr("width",widthScreen*0.15);
+jQuery("body").css("padding-top","15px");
     /*Une animation de test
     jQuery('#gameArea').animateLayer('myBox', {
 	x: 150, y: 150,
@@ -39,7 +50,7 @@ function getPixelColor(){
 }
 
 
-setInterval(onTimerTick, /*33*/1000); // 33 milliseconds = ~ 30 frames per sec (loop game)
+setInterval(onTimerTick, 1000); // 1000 milliseconds (loop game)
 
 var numMouton = 0;
 
