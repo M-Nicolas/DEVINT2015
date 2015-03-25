@@ -9,6 +9,11 @@ var Menu = function () {
     var menu = ["jouer", "scores"],
         sound,
         index_selectionne = 0;
+		
+		// Lecture du cookie afin de retrouver la couleur du menu sauvegardé
+		if (!(defaultColor = readCookie("color"))) {
+			defaultColor = 0;
+		}
 
     /* singleton */
     if (Menu.prototype.instance) {
@@ -38,6 +43,7 @@ var Menu = function () {
 					defaultColor = 0;
 				}
 				menuColors();
+				createCookie("color", defaultColor, 400);
 				break;
             //key up
             case 38:
