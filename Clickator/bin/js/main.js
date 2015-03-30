@@ -49,12 +49,13 @@ function getPixelColor(){
     return pixel;
 }
 
-setInterval(onTimerTick, 1000); // 1000 milliseconds (loop game)
+setInterval(onTimerTick, 1500); // 1000 milliseconds (loop game)
 
 var nbMoutons=0;
 var nbTotMoutons=0;
 var nbDeSecondes=0;
 function onTimerTick(){
+	nbDeSecondes++;
 	var xTEMP=Math.floor((Math.random() * 750) + 1);
 	var yTEMP=Math.floor((Math.random() * 350) + 1);
 	if (nbMoutons<5) {
@@ -62,6 +63,7 @@ function onTimerTick(){
 		nbMoutons++;
 		jQuery('#gameArea').drawImage({
 			layer:true,
+			groups: ['myBoxes'],
 			name:'mout'+nbTotMoutons,
 			source: 'Image/mouton.png',
 			scale: 0.35,
@@ -69,6 +71,7 @@ function onTimerTick(){
 			click: function(layer){
 				var tmp = getPixelColor();
 				if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
+					nbDeSecondes=0;//on set le nombre de seconde a 0
 					jQuery("#gameArea").removeLayer(layer).drawLayers();
 					nbMoutons--;
 					scoring.add(500);
@@ -85,5 +88,24 @@ function onTimerTick(){
 			height: '+='+tmpHeightMout,
 			width: '+='+tmpWidthMout
 		});
+	}
+	if (nbDeSecondes==2) {
+	    var lstMoutons = jQuery("#gameArea").getLayerGroup('myBoxes');
+	    /*
+	    lstMoutons.forEach(function(entry){
+		jQuery("#gameArea").removeLayer(entry).drawLayers();
+	    });
+	    */
+	    var tmpLay2 = jQuery("#gameArea").getLayer(lstMoutons[0]);
+	    //alert(tmpLay2.name);
+	    tmpLay2.width=350;
+	    tmpLay2.height=350;
+	    jQuery('#gameArea').animateLayer(tmpLay2.name, {
+		    width: '-=350',
+		    height: '-=350'
+	    });
+	    setTimeout(function(){jQuery("#gameArea").removeLayer(lstMoutons[0]).drawLayers();},1000);
+	    nbDeSecondes=0;
+	    nbMoutons--;
 	}
 }
