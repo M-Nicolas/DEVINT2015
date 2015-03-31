@@ -45,7 +45,7 @@ var nbLoup=0;
 var nbTotLoups=0;
 
 function onTimerTick(){
-	if (++nbDeSecondesTot>3) {
+	if (++nbDeSecondesTot>40) {
 	    alert('fin du jeu');
 	    clearInterval(loopGame);
 	}
