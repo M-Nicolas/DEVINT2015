@@ -21,20 +21,6 @@ jQuery("#gameArea").attr("height",heightScreen*0.90);
 jQuery("#ScoreArea").css("height",heightScreen*0.90);
 jQuery("#ScoreArea").attr("width",widthScreen*0.15);
 jQuery("body").css("padding-top","15px");
- 
-    /*Une animation de test
-    jQuery('#gameArea').animateLayer('myBox', {
-	x: 150, y: 150,
-	width: 100, height: 50
-      }, 1000, function(layer) {
-	// Callback function
-	jQuery(this).animateLayer(layer, {
-	  fillStyle: 'rgb(204, 51, 51)',
-	  x: 250, y: 100,
-	  rotate: 360
-	}, 'slow', 'swing');
-      });
-      */
 
 jQuery(document).mousemove(function(e){
     canvasOffset = jQuery("#gameArea").offset();
@@ -49,21 +35,65 @@ function getPixelColor(){
     return pixel;
 }
 
-setInterval(onTimerTick, 1500); // 1000 milliseconds (loop game)
+var loopGame = setInterval(onTimerTick, 1500); // en milliseconds (loop game)
 
 var nbMoutons=0;
 var nbTotMoutons=0;
 var nbDeSecondes=0;
+var nbDeSecondesTot=0;
+var nbLoup=0;
+var nbTotLoups=0;
+
 function onTimerTick(){
+	if (++nbDeSecondesTot>3) {
+	    alert('fin du jeu');
+	    clearInterval(loopGame);
+	}
 	nbDeSecondes++;
-	var xTEMP=Math.floor((Math.random() * 750) + 1);
-	var yTEMP=Math.floor((Math.random() * 350) + 1);
+	var xTEMP=Math.floor((Math.random() * 750) + 1)+50;
+	var yTEMP=Math.floor((Math.random() * 350) + 1)+50;
+	if (nbLoup<1) {
+	    var xTEMPLoup=Math.floor((Math.random() * 750) + 1)+50;
+	    var yTEMPLoup=Math.floor((Math.random() * 350) + 1)+50;
+	    nbLoup++;
+	    nbTotLoups++;
+	    jQuery('#gameArea').drawImage({
+		    layer:true,
+		    groups: ['Loups'],
+		    name:'loup'+nbTotLoups,
+		    source: 'Image/loup.png',
+		    scale: 0.70,
+		    x:xTEMPLoup  , y: yTEMPLoup,
+		    click: function(layer){
+			    var tmp = getPixelColor();
+			    if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
+				    nbDeSecondes=0;//on set le nombre de seconde a 0
+				    jQuery("#gameArea").removeLayer(layer).drawLayers();
+				    nbLoup--;
+				    scoring.add(500);
+			    }
+		    }
+	    });
+	    
+	    var tmpl = jQuery("#gameArea").getLayer('loup'+nbTotLoups);
+	    var tmpWidthMout = tmpl.width;
+	    var tmpHeightMout = tmpl.height;
+	    tmpl.width=0;//350
+	    tmpl.height=0;//350
+	    
+	    setTimeout(function(){
+		jQuery('#gameArea').animateLayer('loup'+nbTotLoups, {
+			height: '+='+tmpHeightMout,
+			width: '+='+tmpWidthMout
+		});
+	    },10);
+	}
 	if (nbMoutons<5) {
 		nbTotMoutons++;
 		nbMoutons++;
 		jQuery('#gameArea').drawImage({
 			layer:true,
-			groups: ['myBoxes'],
+			groups: ['Moutons'],
 			name:'mout'+nbTotMoutons,
 			source: 'Image/mouton.png',
 			scale: 0.35,
@@ -89,23 +119,34 @@ function onTimerTick(){
 			width: '+='+tmpWidthMout
 		});
 	}
+	
+	
 	if (nbDeSecondes==2) {
-	    var lstMoutons = jQuery("#gameArea").getLayerGroup('myBoxes');
-	    /*
-	    lstMoutons.forEach(function(entry){
-		jQuery("#gameArea").removeLayer(entry).drawLayers();
-	    });
-	    */
+	    var lstMoutons = jQuery("#gameArea").getLayerGroup('Moutons');
+	    var lstLoups = jQuery("#gameArea").getLayerGroup('Loups');
 	    var tmpLay2 = jQuery("#gameArea").getLayer(lstMoutons[0]);
-	    //alert(tmpLay2.name);
+	    var tmpLoup = jQuery("#gameArea").getLayer(lstLoups[0]);
+	    
+	    
+	    tmpLoup.width=350;
+	    tmpLoup.height=350;
+	    jQuery('#gameArea').animateLayer(tmpLoup.name, {
+		    width: '-=350',
+		    height: '-=350'
+	    });
+	    jQuery("#gameArea").removeLayer(lstLoups[0]).drawLayers();
+	    
 	    tmpLay2.width=350;
 	    tmpLay2.height=350;
 	    jQuery('#gameArea').animateLayer(tmpLay2.name, {
 		    width: '-=350',
 		    height: '-=350'
 	    });
+	    
+	    
 	    setTimeout(function(){jQuery("#gameArea").removeLayer(lstMoutons[0]).drawLayers();},1000);
 	    nbDeSecondes=0;
 	    nbMoutons--;
+	    nbLoup--;
 	}
 }
