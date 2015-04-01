@@ -43,12 +43,14 @@ var nbDeSecondes=0;
 var nbDeSecondesTot=0;
 var nbLoup=0;
 var nbTotLoups=0;
+var nbDeSecondesLoup=0;
 
 function onTimerTick(){
 	if (++nbDeSecondesTot>40) {
 	    alert('fin du jeu');
 	    clearInterval(loopGame);
 	}
+	nbDeSecondesLoup++;
 	nbDeSecondes++;
 	var xTEMP=Math.floor((Math.random() * 750) + 1)+50;
 	var yTEMP=Math.floor((Math.random() * 350) + 1)+50;
@@ -67,7 +69,7 @@ function onTimerTick(){
 		    click: function(layer){
 			    var tmp = getPixelColor();
 			    if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
-				    nbDeSecondes=0;//on set le nombre de seconde a 0
+				    nbDeSecondesLoup=0;//on set le nombre de seconde a 0
 				    jQuery("#gameArea").removeLayer(layer).drawLayers();
 				    nbLoup--;
 				    scoring.add(500);
@@ -121,20 +123,22 @@ function onTimerTick(){
 	}
 	
 	
-	if (nbDeSecondes==2) {
-	    var lstMoutons = jQuery("#gameArea").getLayerGroup('Moutons');
-	    var lstLoups = jQuery("#gameArea").getLayerGroup('Loups');
-	    var tmpLay2 = jQuery("#gameArea").getLayer(lstMoutons[0]);
-	    var tmpLoup = jQuery("#gameArea").getLayer(lstLoups[0]);
-	    
-	    
-	    tmpLoup.width=350;
+	if (nbDeSecondesLoup%3==0) {
+		var lstLoups = jQuery("#gameArea").getLayerGroup('Loups');
+		var tmpLoup = jQuery("#gameArea").getLayer(lstLoups[0]);
+		tmpLoup.width=350;
 	    tmpLoup.height=350;
 	    jQuery('#gameArea').animateLayer(tmpLoup.name, {
 		    width: '-=350',
 		    height: '-=350'
 	    });
-	    jQuery("#gameArea").removeLayer(lstLoups[0]).drawLayers();
+	    setTimeout(function(){jQuery("#gameArea").removeLayer(lstLoups[0]).drawLayers()},700);
+		nbLoup--;
+	}
+	
+	if (nbDeSecondes==2) {
+	    var lstMoutons = jQuery("#gameArea").getLayerGroup('Moutons');
+	    var tmpLay2 = jQuery("#gameArea").getLayer(lstMoutons[0]);
 	    
 	    tmpLay2.width=350;
 	    tmpLay2.height=350;
@@ -147,6 +151,5 @@ function onTimerTick(){
 	    setTimeout(function(){jQuery("#gameArea").removeLayer(lstMoutons[0]).drawLayers();},1000);
 	    nbDeSecondes=0;
 	    nbMoutons--;
-	    nbLoup--;
 	}
 }
