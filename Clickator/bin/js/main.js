@@ -72,7 +72,7 @@ function onTimerTick(){
 				    nbDeSecondesLoup=0;//on set le nombre de seconde a 0
 				    jQuery("#gameArea").removeLayer(layer).drawLayers();
 				    nbLoup--;
-				    scoring.add(500);
+				    scoring.substract(500);
 			    }
 		    }
 	    });
