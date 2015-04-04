@@ -1,5 +1,17 @@
 jQuery.noConflict();
 
+var sound;
+function lire_son(src) {
+	if(sound!=null){
+		sound.pause();
+		sound.currentTime = 0;
+	}
+	console.log("lire son");
+	sound = new Audio(src);
+	sound.play();
+
+}
+
 var canvas = document.getElementById('gameArea');
 var ctx = canvas.getContext('2d');
 
@@ -101,6 +113,7 @@ function onTimerTick(){
 			scale: 0.35,
 			x:xTEMP  , y: yTEMP,
 			click: function(layer){
+				lire_son("sounds/game/gun.wav");
 				var tmp = getPixelColor();
 				if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
 					nbDeSecondes=0;//on set le nombre de seconde a 0
