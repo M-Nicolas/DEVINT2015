@@ -9,7 +9,24 @@ function lire_son(src) {
 	console.log("lire son");
 	sound = new Audio(src);
 	sound.play();
+}
 
+function gameSound(i){
+	switch (i) {
+		case 0:
+			lire_son("sounds/game/gun.wav");
+			break;
+		case 1:
+			//alert("ici");
+			setTimeout(function(){lire_son("sounds/game/male-sheep.mp3");},450);
+			break;
+		case 2:
+			setTimeout(function(){lire_son("sounds/game/wolfdeath.wav");},450);
+			break;
+		default:
+			lire_son("sounds/game/gun.wav");
+			break;
+	}
 }
 
 var canvas = document.getElementById('gameArea');
@@ -75,10 +92,11 @@ function onTimerTick(){
 		    layer:true,
 		    groups: ['Loups'],
 		    name:'loup'+nbTotLoups,
-		    source: 'Image/loup.png',
-		    scale: 0.70,
+		    source: 'Image/mouton.png',
+		    scale: 0.35,
 		    x:xTEMPLoup  , y: yTEMPLoup,
 		    click: function(layer){
+				gameSound(1);
 			    var tmp = getPixelColor();
 			    if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
 				    nbDeSecondesLoup=0;//on set le nombre de seconde a 0
@@ -109,11 +127,11 @@ function onTimerTick(){
 			layer:true,
 			groups: ['Moutons'],
 			name:'mout'+nbTotMoutons,
-			source: 'Image/mouton.png',
+			source: 'Image/loup.png',
 			scale: 0.35,
 			x:xTEMP  , y: yTEMP,
 			click: function(layer){
-				lire_son("sounds/game/gun.wav");
+				gameSound(2);
 				var tmp = getPixelColor();
 				if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
 					nbDeSecondes=0;//on set le nombre de seconde a 0
@@ -166,3 +184,7 @@ function onTimerTick(){
 	    nbMoutons--;
 	}
 }
+
+jQuery("#gameArea").click(function(){
+	gameSound(0);
+});
