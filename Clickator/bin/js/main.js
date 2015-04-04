@@ -1,14 +1,14 @@
 jQuery.noConflict();
 
-var sound;
+var soundGame;
 function lire_son(src) {
-	if(sound!=null){
-		sound.pause();
-		sound.currentTime = 0;
+	if(soundGame!=null){
+		soundGame.pause();
+		soundGame.currentTime = 0;
 	}
 	console.log("lire son");
-	sound = new Audio(src);
-	sound.play();
+	soundGame = new Audio(src);
+	soundGame.play();
 }
 
 function gameSound(i){
@@ -76,8 +76,10 @@ var nbDeSecondesLoup=0;
 
 function onTimerTick(){
 	if (++nbDeSecondesTot>40) {
-	    alert('fin du jeu');
+	    //alert('fin du jeu');
+		jQuery("#pos-alert").show();
 	    clearInterval(loopGame);
+		setTimeout(function(){jQuery('#gameArea').removeLayers()},500);
 	}
 	nbDeSecondesLoup++;
 	nbDeSecondes++;
@@ -96,9 +98,9 @@ function onTimerTick(){
 		    scale: 0.35,
 		    x:xTEMPLoup  , y: yTEMPLoup,
 		    click: function(layer){
-				gameSound(1);
 			    var tmp = getPixelColor();
 			    if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
+					gameSound(1);
 				    nbDeSecondesLoup=0;//on set le nombre de seconde a 0
 				    jQuery("#gameArea").removeLayer(layer).drawLayers();
 				    nbLoup--;
@@ -131,9 +133,9 @@ function onTimerTick(){
 			scale: 0.35,
 			x:xTEMP  , y: yTEMP,
 			click: function(layer){
-				gameSound(2);
 				var tmp = getPixelColor();
 				if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
+					gameSound(2);
 					nbDeSecondes=0;//on set le nombre de seconde a 0
 					jQuery("#gameArea").removeLayer(layer).drawLayers();
 					nbMoutons--;
