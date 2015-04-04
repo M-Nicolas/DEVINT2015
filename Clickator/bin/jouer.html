@@ -13,67 +13,9 @@
     <link rel="stylesheet" href="library/bootstrap-3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
 	<link href='http://fonts.googleapis.com/css?family=Lora:400,700italic' rel='stylesheet' type='text/css'>
-    
-	<style>
-        h1{
-            text-align: center;
-            color : orangered;
-            font-size: 70px;
-        }
-        body {
-            padding-top: 50px;
-            padding-bottom: 20px;
-            background-color: black;
-        }
-
-		.bouton {
-			padding:6px 0 6px 0;
-			font:bold 13px Arial;
-			background:#f5f5f5;
-			color:#555;
-			border-radius:2px;
-			width:200px;
-			height:50px;
-			font-size:30px;
-			border:1px solid #ccc;
-			box-shadow:1px 1px 3px #999;
-		}
-
-		.tdBouton{
-			padding:20px;
-		}
-
-		#display{
-			margin:auto;
-		}
-
-		#game{
-			margin:auto;
-			width:100%;
-		}
-		#scores{
-			width: 100px;
-			font-family:sans-serif;
-			padding-left:70px;
-			font-size:40px;
-			text-shadow:2px 2px 3px gray;
-			vertical-align:top;
-		}
-
-		#bouton{
-			vertical-align:middle;
-			padding-left:50px;
-		}
-		#nbwin{
-			position : absolute;
-			top : 260px;
-			left: 630px;
-			color: green;
-			font-size: 60px;
-			font-family: 'Lora', serif;
-		}		
-		</style>
     <link rel="stylesheet" href="library/bootstrap-3.1.1/css/bootstrap-theme.min.css">
+    <script src="js/raphael.2.1.0.min.js"></script>
+    <script src="js/justgage.1.0.1.min.js"></script>
     <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
 </head>
 <body>
@@ -81,17 +23,27 @@
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container">
+    <div class="container-full">
 	<canvas width='800px' height='450px' id='gameArea' style='float:left;background-color:#FFFFFF;'></canvas>
-	<div id="ScoreArea" style='float:left;width:20%;height:450px;background-color:green; '>
+	<div id="scoreArea" style='float:left;width:200;height:450px; '>
 	    <table style='width:100%'>
 			<tr>
 				<td style='text-align:center;'>
-				<div id="gauge"></div>
-				<div id="score"></div>
-				<div id="combo-points"></div>
-				<div id="combo-multiplier"></div>
-				<div id="highscore"></div>
+					<div id="gauge">
+                        <script>
+                          var gauge = new JustGage({
+                            id: "gauge",
+                            value: 0,
+                            min: 0,
+                            max: 100,
+                            title: "Kill'em all!"
+                          });
+                        </script>
+                    </div>
+					<div id="score"></div>
+					<div id="combo-points"></div>
+					<div id="combo-multiplier"></div>
+					<div id="highscore"></div>
 				</td>
 			</tr>
 	    </table>
@@ -107,7 +59,7 @@
 			</div>
 			<div class="dialogBasContent">
 				<div class="centPorcent open_sansbold btnImage" onclick="jQuery('div#pos-alert').hide();" style="text-align:center;height:49px;color:#FFFFFF;line-height:3.5;">
-					OK
+					
 				</div>
 			</div>
 		</div>
@@ -116,8 +68,6 @@
     <script src="library/bootstrap-3.1.1/js/bootstrap.min.js"></script>
     <script src="library/jQuery.jPlayer.2.5.0/jquery.jplayer.min.js"></script>
     <script src="library/jCanvas.min.js"></script>
-    <script src="js/raphael.2.1.0.min.js"></script>
-    <script src="js/justgage.1.0.1.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/scores.js"></script>
     <script src="js/main.js"></script>
