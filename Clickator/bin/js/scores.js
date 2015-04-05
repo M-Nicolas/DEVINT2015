@@ -34,6 +34,7 @@ Score.prototype = {
 
 	update: function() {
 		document.getElementById('score').innerHTML = this.value;
+                
 	}
 }
 

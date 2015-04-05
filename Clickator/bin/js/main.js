@@ -42,14 +42,13 @@ var widthScreen = jQuery(document).width();
 var heightScreen = jQuery(document).height();
 var scoring = new Score(3);
 
-var tmp = Math.round(widthScreen*0.75);
+var canvasWidth = Math.round(widthScreen*0.80);
 
 jQuery(".container").css("width",widthScreen);
-jQuery("#gameArea").attr("width",tmp);
-jQuery("#gameArea").attr("height",heightScreen*0.90);
-jQuery("#ScoreArea").css("height",heightScreen*0.90);
-jQuery("#ScoreArea").attr("width",widthScreen*0.15);
-jQuery("body").css("padding-top","15px");
+jQuery("#gameArea").attr("width",canvasWidth);
+jQuery("#gameArea").attr("height",heightScreen);
+jQuery("#scoreArea").css("height",heightScreen);
+jQuery("#scoreArea").css("width",Math.round(widthScreen*0.20));
 
 jQuery(document).mousemove(function(e){
     canvasOffset = jQuery("#gameArea").offset();
@@ -58,6 +57,8 @@ jQuery(document).mousemove(function(e){
 });
 
 function getPixelColor(){
+    imageData = new Image();
+    imageData.crossOrigin = 'anonymous';
     imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
     pixel = imageData.data;
     //pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
