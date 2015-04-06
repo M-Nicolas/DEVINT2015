@@ -35,17 +35,58 @@ h1{
 }
 
 #gameArea{
+    background-color: white;
     cursor: url("../Image/curseur.png") 25 25, default;
 }
-/*
+
+#scoreArea {
+     background-color: gray;
+     text-align: center;
+     font-size:50px;
+     color: white;
+     float:left;
+     width:200px;
+     height:450px;
+}
+
+div.round {
+	margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;	
+    width: 200px;
+	height: 200px;
+	position: relative;
+    border: 1px solid #999;
+}
+
+div.round input {
+    position absolute;
+    margin-top: 65px;
+    font-size: 50px;
+    text-align: center;
+    width: 100px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+div.round canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 #score{
-    background-color:green;
+    background-color: white;
+    border: solid 5px;
+    color: black;
     font-family:sans-serif;
-    padding-left:70px;
-    font-size:40px;
+    
     text-shadow:2px 2px 3px gray;
     vertical-align:top;
-}*/
+}
 
 #bouton{
     vertical-align:middle;
@@ -62,3 +103,70 @@ h1{
 }
 
 
+/************************************/
+/* Fenêtre de dialogue - Fin du jeu */
+
+/************************************/
+/*
+.pos-dialog {
+	height: 100%;
+	width: 100%;
+	display: none;
+	background: url("Image/fond_popUp.png") repeat scroll 0% 0% transparent;
+	left: 0px;
+	margin: 0px;
+	overflow: auto;
+	padding: 0px;
+	position: fixed;
+	text-align: center;
+	top: 0px;
+	z-index: 2001;
+}
+
+.dialogContent {
+	min-width: 550px;
+	max-width: 550px;
+	width: 550px;
+	margin: 50px auto auto;
+	background: url("Image/FondDialogueH.png") no-repeat scroll center top transparent;
+	padding-top: 11px;
+	text-align: center;
+}
+
+.dialogMessContent {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	padding: 5px 20px;
+	background: url("Image/FondDialogueC.png") repeat-y scroll center top transparent;
+	color: #000;
+	text-align: center;
+	font-size: 15.5px;
+}
+
+.centPorcent {
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+}
+
+.dialogMessContent .messAlert {
+	font-size: 13.5px;
+	line-height: 1.5;
+}
+
+.dialogBasContent {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	height: 59px;
+	min-height: 59px;
+	max-height: 59px;
+	background: url("Image/FondDialogueB.png") no-repeat scroll center top transparent;
+	padding: 1px 5px 8px;
+	color: #000;
+	text-align: center;
+}
+*/
