@@ -14,68 +14,71 @@
     <link rel="stylesheet" href="css/main.css">
 	<link href='http://fonts.googleapis.com/css?family=Lora:400,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="library/bootstrap-3.1.1/css/bootstrap-theme.min.css">
-    <script src="js/raphael.2.1.0.min.js"></script>
-    <script src="js/justgage.1.0.1.min.js"></script>
     <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
 </head>
 <body>
 	<style>
-		.pos-dialog {
-			height: 100%;
-			width: 100%;
-			display: none;
-			background: url("Image/fond_popUp.png") repeat scroll 0% 0% transparent;
-			left: 0px;
-			margin: 0px;
-			overflow: auto;
-			padding: 0px;
-			position: fixed;
-			text-align: center;
-			top: 0px;
-			z-index: 2001;
-		}
-		.dialogContent {
-			min-width: 550px;
-			max-width: 550px;
-			width: 550px;
-			margin: 50px auto auto;
-			background: url("Image/FondDialogueH.png") no-repeat scroll center top transparent;
-			padding-top: 11px;
-			text-align: center;
-		}
-		.dialogMessContent {
-			box-sizing: border-box;
-			width: 100%;
-			min-width: 100%;
-			max-width: 100%;
-			padding: 5px 20px;
-			background: url("Image/FondDialogueC.png") repeat-y scroll center top transparent;
-			color: #000;
-			text-align: center;
-			font-size: 15.5px;
-		}
-		.centPorcent {
-			width: 100%;
-			min-width: 100%;
-			max-width: 100%;
-		}
-		.dialogMessContent .messAlert {
-			font-size: 13.5px;
-			line-height: 1.5;
-		}
-		.dialogBasContent {
-			box-sizing: border-box;
-			width: 100%;
-			min-width: 100%;
-			max-width: 100%;
-			height: 59px;
-			min-height: 59px;
-			max-height: 59px;
-			background: url("Image/FondDialogueB.png") no-repeat scroll center top transparent;
-			padding: 1px 5px 8px;
-			color: #000;
-			text-align: center;
-		}
+        .pos-dialog {
+	        height: 100%;
+	        width: 100%;
+	        display: none;
+	        background: url("Image/fond_popUp.png") repeat scroll 0% 0% transparent;
+	        left: 0px;
+	        margin: 0px;
+	        overflow: auto;
+	        padding: 0px;
+	        position: fixed;
+	        text-align: center;
+	        top: 0px;
+	        z-index: 2001;
+        }
+
+        .dialogContent {
+	        min-width: 550px;
+	        max-width: 550px;
+	        width: 550px;
+	        margin: 50px auto auto;
+	        background: url("Image/FondDialogueH.png") no-repeat scroll center top transparent;
+	        padding-top: 11px;
+	        text-align: center;
+        }
+
+        .dialogMessContent {
+	        box-sizing: border-box;
+	        width: 100%;
+	        min-width: 100%;
+	        max-width: 100%;
+	        padding: 5px 20px;
+	        background: url("Image/FondDialogueC.png") repeat-y scroll center top transparent;
+	        color: #000;
+	        text-align: center;
+	        font-size: 15.5px;
+        }
+
+        .centPorcent {
+	        width: 100%;
+	        min-width: 100%;
+	        max-width: 100%;
+        }
+
+        .dialogMessContent .messAlert {
+	        font-size: 13.5px;
+	        line-height: 1.5;
+        }
+
+        .dialogBasContent {
+	        box-sizing: border-box;
+	        width: 100%;
+	        min-width: 100%;
+	        max-width: 100%;
+	        height: 59px;
+	        min-height: 59px;
+	        max-height: 59px;
+	        background: url("Image/FondDialogueB.png") no-repeat scroll center top transparent;
+	        padding: 1px 5px 8px;
+	        color: #000;
+	        text-align: center;
+        }
 	</style>
     <!--[if lt IE 7]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -83,29 +86,12 @@
 
     <div class="container-full">
 	<canvas width='800px' height='450px' id='gameArea' style='float:left;background-color:#FFFFFF;'></canvas>
-	<div id="scoreArea" style='float:left;width:200;height:450px; '>
-	    <table style='width:100%'>
-			<tr>
-				<td style='text-align:center;'>
-					<div id="gauge">
-                        <script>
-                          var gauge = new JustGage({
-                            id: "gauge",
-                            value: 0,
-                            min: 0,
-                            max: 100,
-                            title: "Kill'em all!"
-                          });
-                        </script>
-                    </div>
-					<div id="score"></div>
-					<div id="combo-points"></div>
-					<div id="combo-multiplier"></div>
-					<div id="highscore"></div>
-				</td>
-			</tr>
-	    </table>
-	</div>
+	<div id="scoreArea" style=''>
+        <input type="text/javascript" name="round" id="gauge" class="round" data-min="0" data-max="100"/>
+	    <div id="score"></div>
+	    <div id="combo-points"></div>
+	    <div id="combo-multiplier"></div>
+	    <div id="highscore"></div>
     </div>
 	<div style="display: none;" id="pos-alert" class="pos-dialog">
 		<div class="dialogContent" style="position:relative;z-index:2;">
@@ -131,6 +117,7 @@
     <script src="library/jQuery.jPlayer.2.5.0/jquery.jplayer.min.js"></script>
     <script src="library/jCanvas.min.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/gauge.js"></script>
     <script src="js/scores.js"></script>
     <script src="js/main.js"></script>
 </body>
