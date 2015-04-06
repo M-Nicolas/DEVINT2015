@@ -76,7 +76,7 @@ var nbTotLoups=0;
 var nbDeSecondesLoup=0;
 
 function onTimerTick(){
-	if (++nbDeSecondesTot>2) {
+	if (++nbDeSecondesTot>40) {
 	    //FIN DE LA PARTIE
 	    jQuery("#HSPop").text(jQuery("#score").text());
 	    jQuery("#pos-alert").show();
