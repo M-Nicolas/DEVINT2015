@@ -75,6 +75,7 @@ var nbLoup=0;
 var nbTotLoups=0;
 var nbDeSecondesLoup=0;
 var playTime = 30; // Temps de jeu en secondes
+var scoreAdd=5;
 var countDownTimer = setInterval(function() {
     var seconds = $gauge.val();
     seconds--;
@@ -88,8 +89,10 @@ function onTimerTick(){
         scoring.update();
 	    jQuery("#HSPop").text(jQuery("#score").text());
 	    jQuery("#pos-alert").show();
+	    var tmpCalcHeight = (heightScreen/2)-(jQuery(".dialogContent").height()/2);
+	    jQuery(".dialogContent").css("margin",tmpCalcHeight+"px auto auto");
 	    clearInterval(loopGame);
-		setTimeout(function(){jQuery('#gameArea').removeLayers()},500);
+	    setTimeout(function(){jQuery('#gameArea').clearCanvas();},800);
 	}
 	nbDeSecondesLoup++;
 	nbDeSecondes++;
@@ -114,7 +117,7 @@ function onTimerTick(){
 				    nbDeSecondesLoup=0;//on set le nombre de seconde a 0
 				    jQuery("#gameArea").removeLayer(layer).drawLayers();
 				    nbLoup--;
-				    scoring.substract(500);
+				    scoring.substract(scoreAdd);
 			    }
 		    }
 	    });
@@ -149,7 +152,7 @@ function onTimerTick(){
 					nbDeSecondes=0;//on set le nombre de seconde a 0
 					jQuery("#gameArea").removeLayer(layer).drawLayers();
 					nbMoutons--;
-					scoring.add(500);
+					scoring.add(scoreAdd);
 				}
 			}
 		});
