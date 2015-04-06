@@ -8,7 +8,7 @@ jQuery('input.round').wrap('<div class="round" />').each(function() {
     var min = $input.data('min');
     var max = $input.data('max');
     
-    $input.val(0);    
+    $input.val(30);    
 
     $circle = jQuery('<canvas width="200px" height="200px" />');
     $color = jQuery('<canvas width="200px" height="200px" />');

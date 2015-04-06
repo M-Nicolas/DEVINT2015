@@ -65,7 +65,7 @@ function getPixelColor(){
     return pixel;
 }
 
-var loopGame = setInterval(onTimerTick, 1500); // en milliseconds (loop game)
+var loopGame = setInterval(onTimerTick, 1000); // en milliseconds (loop game)
 
 var nbMoutons=0;
 var nbTotMoutons=0;
@@ -74,10 +74,18 @@ var nbDeSecondesTot=0;
 var nbLoup=0;
 var nbTotLoups=0;
 var nbDeSecondesLoup=0;
+var playTime = 30; // Temps de jeu en secondes
+var countDownTimer = setInterval(function() {
+    var seconds = $gauge.val();
+    seconds--;
+    $gauge.val(seconds);
+}, 1000);
 
 function onTimerTick(){
-	if (++nbDeSecondesTot>2) {
+	if (++nbDeSecondesTot>playTime) {
 	    //FIN DE LA PARTIE
+        clearInterval(countDownTimer);
+        scoring.update();
 	    jQuery("#HSPop").text(jQuery("#score").text());
 	    jQuery("#pos-alert").show();
 	    clearInterval(loopGame);
@@ -85,11 +93,11 @@ function onTimerTick(){
 	}
 	nbDeSecondesLoup++;
 	nbDeSecondes++;
-	var xTEMP=Math.floor((Math.random() * 750) + 1)+50;
-	var yTEMP=Math.floor((Math.random() * 350) + 1)+50;
+	var xTEMP=Math.floor((Math.random() * (canvasWidth-100)) + 1)+50;
+	var yTEMP=Math.floor((Math.random() * (heightScreen-100)) + 1)+50;
 	if (nbLoup<1) {
-	    var xTEMPLoup=Math.floor((Math.random() * 750) + 1)+50;
-	    var yTEMPLoup=Math.floor((Math.random() * 350) + 1)+50;
+	    var xTEMPLoup=Math.floor((Math.random() * (canvasWidth-100)) + 1)+50;
+	    var yTEMPLoup=Math.floor((Math.random() * (heightScreen-100)) + 1)+50;
 	    nbLoup++;
 	    nbTotLoups++;
 	    jQuery('#gameArea').drawImage({

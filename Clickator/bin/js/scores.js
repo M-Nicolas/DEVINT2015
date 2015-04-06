@@ -1,8 +1,9 @@
 function Score(queueTime) {
 	// Initial score value	
 	this.value = 0;
-	this.update();
+	this.display();
 	this.combo = new Combo(queueTime);
+    this.combo
 }
 
 
@@ -14,28 +15,32 @@ Score.prototype = {
 	add: function(points) {
 		var t = new Date().getTime();
 		var inputDifference = t - this.combo.lastInputTime;
-		//console.log(inputDifference);
 		if (inputDifference <= this.combo.queueTime * 1000) {
-			//console.log("combo((points)");
 			this.combo.add(points);
 		} else {
 			this.combo.lastInputTime = t;
 			this.value += points + this.combo.score * this.combo.multiplier;
-			this.update();
+			this.display();
 			this.combo.reset();
 		}
 	},
 
 	substract: function(points) {
+        this.update();
 		this.combo.reset();
 		this.value -= points;
-		this.update();
+		this.display();
 	},
 
-	update: function() {
-		document.getElementById('score').innerHTML = this.value;
-                
-	}
+	display: function() {
+		document.getElementById('score').innerHTML = this.value;   
+	},
+
+    update: function() {
+        this.value += this.combo.score * this.combo.multiplier;
+        this.combo.reset();		
+        this.display();
+    }
 }
 
 function Combo(queueTime) {
@@ -62,7 +67,7 @@ Combo.prototype = {
 		this.lastInputTime = new Date().getTime();
 		this.multiplier = ++this.number / this.range;
 		this.score += points;
-		document.getElementById('combo-points').innerHTML = "Combo points: "+this.score;
+		document.getElementById('combo-points').innerHTML = this.score;
 		document.getElementById('combo-multiplier').innerHTML = "x"+this.multiplier;
 	},
 
