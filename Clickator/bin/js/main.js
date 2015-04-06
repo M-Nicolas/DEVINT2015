@@ -76,9 +76,10 @@ var nbTotLoups=0;
 var nbDeSecondesLoup=0;
 
 function onTimerTick(){
-	if (++nbDeSecondesTot>40) {
-	    //alert('fin du jeu');
-		jQuery("#pos-alert").show();
+	if (++nbDeSecondesTot>2) {
+	    //FIN DE LA PARTIE
+	    jQuery("#HSPop").text(jQuery("#score").text());
+	    jQuery("#pos-alert").show();
 	    clearInterval(loopGame);
 		setTimeout(function(){jQuery('#gameArea').removeLayers()},500);
 	}
