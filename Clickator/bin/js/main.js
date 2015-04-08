@@ -93,6 +93,7 @@ var countDownTimer;
 var loopGame;
 jQuery("body").keydown(function(e){
     if (e.keyCode==13) {
+	e.preventDefault();
 	countDownTimer = setInterval(function() {
 	    var seconds = $gauge.val();
 	    seconds--;
@@ -101,6 +102,7 @@ jQuery("body").keydown(function(e){
 	loopGame = setInterval(onTimerTick, 1000); // en milliseconds (loop game)
     }
     if (e.keyCode==114) {
+	e.preventDefault();
 	var colorBack = jQuery("#gameArea").css("background-color");
 	if(colorBack=="rgb(104, 183, 91)"){
 	    jQuery("#gameArea").css("background-color","#FFBE93");
