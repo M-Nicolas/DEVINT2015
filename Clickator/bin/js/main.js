@@ -89,9 +89,31 @@ function getPixelColor(){
     //pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
     return pixel;
 }
-
-var loopGame = setInterval(onTimerTick, 1000); // en milliseconds (loop game)
-
+var countDownTimer;
+var loopGame;
+jQuery("body").keydown(function(e){
+    if (e.keyCode==13) {
+	countDownTimer = setInterval(function() {
+	    var seconds = $gauge.val();
+	    seconds--;
+	    $gauge.val(seconds);
+	}, 1000);
+	loopGame = setInterval(onTimerTick, 1000); // en milliseconds (loop game)
+    }
+    if (e.keyCode==114) {
+	var colorBack = jQuery("#gameArea").css("background-color");
+	if(colorBack=="rgb(104, 183, 91)"){
+	    jQuery("#gameArea").css("background-color","#FFBE93");
+	}
+	else if (colorBack=="rgb(255, 190, 147)") {
+	    jQuery("#gameArea").css("background-color","#ADB9FF");
+	}
+	else if (colorBack=="rgb(173, 185, 255)") {
+	    jQuery("#gameArea").css("background-color","#68B75B");
+	}
+    }
+    
+});
 var nbMoutons=0;
 var nbTotMoutons=0;
 var nbDeSecondes=0;
@@ -101,18 +123,15 @@ var nbTotLoups=0;
 var nbDeSecondesLoup=0;
 var playTime = 30; // Temps de jeu en secondes
 var scoreAdd=5;
-var countDownTimer = setInterval(function() {
-    var seconds = $gauge.val();
-    seconds--;
-    $gauge.val(seconds);
-}, 1000);
 var generate=0;
 var nbLoup=0;
 function onTimerTick(){
+	//alert(playTime);
 	if (++nbDeSecondesTot>playTime || (nbLoup==0 && generate==1)) {
 	    //FIN DE LA PARTIE
-        clearInterval(countDownTimer);
-        scoring.update();
+	    //alert("ici");
+	    clearInterval(countDownTimer);
+	    scoring.update();
 	    jQuery("#HSPop").text(jQuery("#score").text());
 	    jQuery("#pos-alert").show();
 	    var tmpCalcHeight = (heightScreen/2)-(jQuery(".dialogContent").height()/2);
