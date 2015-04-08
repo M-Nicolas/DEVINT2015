@@ -14,14 +14,39 @@ function lire_son(src) {
 function gameSound(i){
 	switch (i) {
 		case 0:
-			lire_son("sounds/game/dog.wav");
+		    var randDogSoun = Math.floor((Math.random() * 4)+1);
+			switch(randDogSoun){
+			    case 1:lire_son("sounds/game/dog.wav");break;
+			    case 2:lire_son("sounds/game/Dog2.wav");break;
+			    case 3:lire_son("sounds/game/Dog3.wav");break;
+			    case 4:lire_son("sounds/game/Dog4.wav");break;
+			    default:lire_son("sounds/game/dog.wav");break;
+			}
 			break;
 		case 1:
-			//alert("ici");
-			setTimeout(function(){lire_son("sounds/game/male-sheep.mp3");},450);
-			break;
+		    var randSheepSoun = Math.floor((Math.random() * 4)+1);
+		    setTimeout(function(){
+			switch(randSheepSoun){
+			    case 1:lire_son("sounds/game/male-sheep.mp3");break;
+			    case 2:lire_son("sounds/game/sheep2.wav");break;
+			    case 3:lire_son("sounds/game/sheep3.wav");break;
+			    case 4:lire_son("sounds/game/sheep4.wav");break;
+			    default:lire_son("sounds/game/male-sheep.mp3");break;
+			}
+		    },450);
+		    break;
 		case 2:
-			setTimeout(function(){lire_son("sounds/game/wolfdeath.wav");},450);
+			var randWolfSoun = Math.floor((Math.random() * 5)+1);
+			setTimeout(function(){
+			    switch(randWolfSoun){
+				case 1:lire_son("sounds/game/wolfdeath.wav");break;
+				case 2:lire_son("sounds/game/wolfdeath2.wav");break;
+				case 3:lire_son("sounds/game/wolfdeath3.wav");break;
+				case 4:lire_son("sounds/game/wolfdeath4.wav");break;
+				case 5:lire_son("sounds/game/wolfdeath5.wav");break;
+				default:lire_son("sounds/game/wolfdeath.wav");break;
+			    }
+			},450);
 			break;
 		default:
 			lire_son("sounds/game/gun.wav");
