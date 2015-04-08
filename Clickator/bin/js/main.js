@@ -14,7 +14,7 @@ function lire_son(src) {
 function gameSound(i){
 	switch (i) {
 		case 0:
-			lire_son("sounds/game/gun.wav");
+			lire_son("sounds/game/dog.wav");
 			break;
 		case 1:
 			//alert("ici");
