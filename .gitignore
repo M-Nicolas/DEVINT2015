@@ -1,6 +1,5 @@
 *.class
 *.txt
-*.bat
 .classpath
 .project
 .settings
