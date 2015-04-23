@@ -1,8 +1,9 @@
 jQuery.noConflict();
 
+var username;
 jQuery("#pos-alertUser").show();
 jQuery(".btnOKPlayerName").click(function(){
-	var username=jQuery('.PlayerName').val();
+	username=jQuery('.PlayerName').val();
 	jQuery("#pos-alertUser").hide();
 });
 
@@ -137,15 +138,7 @@ function onTimerTick(){
 	//alert(playTime);
 	if (++nbDeSecondesTot>playTime || (nbLoup==0 && generate==1)) {
 	    //FIN DE LA PARTIE
-	    //alert("ici");	
-	    clearInterval(countDownTimer);
-	    scoring.update();
-	    jQuery("#HSPop").text(jQuery("#score").text());
-	    jQuery("#pos-alert").show();
-	    var tmpCalcHeight = (heightScreen/2)-(jQuery(".dialogContent").height()/2);
-	    jQuery(".dialogContent").css("margin",tmpCalcHeight+"px auto auto");
-	    clearInterval(loopGame);
-	    setTimeout(function(){jQuery('#gameArea').clearCanvas();},800);
+	    //alert("ici");
 		
 		var noms = readCookie("PlayerNames");
 		var scores = readCookie("PlayerScores");
@@ -158,6 +151,17 @@ function onTimerTick(){
 		}
 		createCookie("PlayerNames", noms, 400);
 		createCookie("PlayerScores", scores, 400);
+		alert(noms+" "+scores);
+		
+		
+	    clearInterval(countDownTimer);
+	    scoring.update();
+	    jQuery("#HSPop").text(jQuery("#score").text());
+	    jQuery("#pos-alert").show();
+	    var tmpCalcHeight = (heightScreen/2)-(jQuery(".dialogContent").height()/2);
+	    jQuery(".dialogContent").css("margin",tmpCalcHeight+"px auto auto");
+	    clearInterval(loopGame);
+	    setTimeout(function(){jQuery('#gameArea').clearCanvas();},800);
 	}
 	nbDeSecondesLoup++;
 	nbDeSecondes++;
