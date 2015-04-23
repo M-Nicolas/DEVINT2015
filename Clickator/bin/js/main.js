@@ -1,5 +1,11 @@
 jQuery.noConflict();
 
+jQuery("#pos-alertUser").show();
+jQuery(".btnOKPlayerName").click(function(){
+	var username=jQuery('.PlayerName').val();
+	jQuery("#pos-alertUser").hide();
+});
+
 var soundGame;
 function lire_son(src) {
 	if(soundGame!=null){
