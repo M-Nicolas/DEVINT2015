@@ -137,7 +137,7 @@ function onTimerTick(){
 	//alert(playTime);
 	if (++nbDeSecondesTot>playTime || (nbLoup==0 && generate==1)) {
 	    //FIN DE LA PARTIE
-	    //alert("ici");
+	    //alert("ici");	
 	    clearInterval(countDownTimer);
 	    scoring.update();
 	    jQuery("#HSPop").text(jQuery("#score").text());
@@ -146,6 +146,18 @@ function onTimerTick(){
 	    jQuery(".dialogContent").css("margin",tmpCalcHeight+"px auto auto");
 	    clearInterval(loopGame);
 	    setTimeout(function(){jQuery('#gameArea').clearCanvas();},800);
+		
+		var noms = readCookie("PlayerNames");
+		var scores = readCookie("PlayerScores");
+		if (noms == null) {
+			noms = username + "//";
+			scores = jQuery("#score").text() +  "//";
+		} else {
+			noms = noms + username +"//";
+			scores = scores + jQuery("#score").text() +  "//";
+		}
+		createCookie("PlayerNames", noms, 400);
+		createCookie("PlayerScores", scores, 400);
 	}
 	nbDeSecondesLoup++;
 	nbDeSecondes++;
