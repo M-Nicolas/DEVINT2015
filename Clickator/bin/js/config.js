@@ -2,7 +2,6 @@
  * Created by lb000790 on 24/03/14.
  */
 
-
 var configMenu = {
     "menu_aide1"       : "sounds/menu/menu-aide1.ogg",
     "menu_jouer1"      : "sounds/menu/menu-jouer1.ogg",

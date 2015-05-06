@@ -1,5 +1,8 @@
 jQuery.noConflict();
 
+var difficulty = readCookie("Difficulty");
+alert(DifficultyPartie);
+
 var username;
 jQuery("#pos-alertUser").show();
 jQuery(".btnOKPlayerName").click(function(){
@@ -139,23 +142,28 @@ function onTimerTick(){
 	if (++nbDeSecondesTot>playTime || (nbLoup==0 && generate==1)) {
 	    //FIN DE LA PARTIE
 	    //alert("ici");
+		scoring.update();
 		
 		var noms = readCookie("PlayerNames");
 		var scores = readCookie("PlayerScores");
 		if (noms == null) {
 			noms = username + "//";
 			scores = jQuery("#score").text() +  "//";
+			difficulty = difficulty+"//";
 		} else {
 			noms = noms + username +"//";
 			scores = scores + jQuery("#score").text() +  "//";
+			difficulty = difficulty+"//";
 		}
 		createCookie("PlayerNames", noms, 400);
 		createCookie("PlayerScores", scores, 400);
-		alert(noms+" "+scores);
+		createCookie("Difficulty", difficulty, 400);
+		
+		alert(noms+" "+scores+" "+difficulty);
 		
 		
 	    clearInterval(countDownTimer);
-	    scoring.update();
+	    
 	    jQuery("#HSPop").text(jQuery("#score").text());
 	    jQuery("#pos-alert").show();
 	    var tmpCalcHeight = (heightScreen/2)-(jQuery(".dialogContent").height()/2);
