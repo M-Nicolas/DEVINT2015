@@ -1,7 +1,7 @@
 jQuery.noConflict();
 
 var difficulty = readCookie("Difficulty");
-alert(DifficultyPartie);
+alert(difficulty);
 
 var username;
 jQuery("#pos-alertUser").show();
@@ -149,11 +149,11 @@ function onTimerTick(){
 		if (noms == null) {
 			noms = username + "//";
 			scores = jQuery("#score").text() +  "//";
-			difficulty = difficulty+"//";
+			difficulty = readCookie("Difficulte") + "//";
 		} else {
 			noms = noms + username +"//";
 			scores = scores + jQuery("#score").text() +  "//";
-			difficulty = difficulty+"//";
+			difficulty = difficulty+ readCookie("Difficulte") + "//";
 		}
 		createCookie("PlayerNames", noms, 400);
 		createCookie("PlayerScores", scores, 400);
