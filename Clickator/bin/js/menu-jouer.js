@@ -208,7 +208,7 @@ var MenuJouer = function () {
 	
 	this.clickOn = function(nom){
 		console.log("click on" + nom);
-        createCookie("Difficulte", nom, 400);
+		createCookie("Difficulte", nom, 400);
 		selectionMenu(nom);
 		validate();
 	}
