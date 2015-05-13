@@ -1,7 +1,7 @@
 jQuery.noConflict();
 
 var difficulty = readCookie("Difficulty");
-alert(difficulty);
+//alert(difficulty);
 
 var username;
 jQuery("#pos-alertUser").show();
