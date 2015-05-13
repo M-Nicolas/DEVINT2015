@@ -20,7 +20,7 @@ function ModeFacile(){
 		createCookie("PlayerScores", scores, 400);
 		createCookie("Difficulty", difficulty, 400);
 		
-		alert(noms+" "+scores+" "+difficulty);
+		//alert(noms+" "+scores+" "+difficulty);
 		
 		
 	    clearInterval(countDownTimer);
