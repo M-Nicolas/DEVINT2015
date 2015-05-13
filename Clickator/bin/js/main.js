@@ -101,27 +101,32 @@ function getPixelColor(){
 }
 var countDownTimer;
 var loopGame;
+var enCours = 0;
 jQuery("body").keydown(function(e){
-    if (e.keyCode==13) {
-	e.preventDefault();
-	countDownTimer = setInterval(function() {
-	    var seconds = $gauge.val();
-	    seconds--;
-	    $gauge.val(seconds);
-	}, 1000);
-		switch(difficulty){
-			case "facile":
-				loopGame = setInterval(ModeFacile, 1000); // en milliseconds (loop game)
-			break;
-			case "normal":
-				loopGame = setInterval(ModeNormal, 1000);
+    if (e.keyCode==32) {
+		if (enCours==0) {
+			jQuery("#jeuEnCours").html("Jeu en cours ...");
+			enCours=1;
+			e.preventDefault();
+			countDownTimer = setInterval(function() {
+				var seconds = $gauge.val();
+				seconds--;
+				$gauge.val(seconds);
+			}, 1000);
+			switch(difficulty){
+				case "facile":
+					loopGame = setInterval(ModeFacile, 1000); // en milliseconds (loop game)
 				break;
-			case "difficile":
-				loopGame = setInterval(ModeDifficile, 1000);
-				break;
-			default:
-				loopGame = setInterval(ModeFacile, 1000);
-				break;
+				case "normal":
+					loopGame = setInterval(ModeNormal, 1000);
+					break;
+				case "difficile":
+					loopGame = setInterval(ModeDifficile, 1000);
+					break;
+				default:
+					loopGame = setInterval(ModeFacile, 1000);
+					break;
+			}
 		}
     }
     if (e.keyCode==114) {
