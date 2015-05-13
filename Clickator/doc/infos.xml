@@ -6,10 +6,10 @@
     <gamecategory><![CDATA[Rapidité]]></gamecategory>
     <gamecategory><![CDATA[Réflexe]]></gamecategory>
   </gamecategories>
-  <shortdescription><![CDATA[faites fuir les Loups qui apparaissent à l'écran]]></shortdescription>
+  <shortdescription><![CDATA[Faites fuir les Loups qui apparaissent à l'écran]]></shortdescription>
   <public><![CDATA[MV]]></public>
   <gamestate><![CDATA[Valider pour le CD]]></gamestate>
-  <age><![CDATA[5]]></age>
+  <age><![CDATA[Tous âges]]></age>
   <title><![CDATA[The last Guardian]]></title>
   <authors>
     <author><![CDATA[MEURGUES Nicolas]]></author>
@@ -23,11 +23,15 @@
 		]]>
 		</note>
 	    <note><![CDATA[
-		le joueur peut utiliser la souris
+		Le joueur peut utiliser la souris pour cliquer sur les loups et naviguer dans le menu. Le clavier peut aussi être utilisé dans le menu.
 		]]>
 		</note>
 	</notes>
-  <gameplay><![CDATA[Avec une souris, faites fuir les loups qui en veulent à votre troupeau !]]></gameplay>
-  <gamerules><![CDATA[Faites fuir le plus de loups pour augmenter votre score]]></gamerules>
+  <gameplay><![CDATA[<p>Avec votre fidèle chien de berger cliquez sur les loups qui en veulent à votre troupeau afin de les faire fuir !<br />
+  Chaque loup repoussé vous donnera des points. Mais attention à ne pas blesser vos moutons, ce qui aurait pour conséquence de vous faire perdre des points et de mettre fin à votre combo.< br />
+  Augmentez le niveau de difficulté pour des loups encore plus dangereux  et battez votre record !</p>]]></gameplay>
+  <gamerules><![CDATA[<p>Faites fuir le plus de loups pour augmenter votre score. <br />
+  Si vous cliquez sur des moutons vous perdez des points.<br />
+  Les scores sont enregistrés par le jeu et consultables dans le menu principal</p>]]></gamerules>
 </infos>
 
