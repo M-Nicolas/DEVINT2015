@@ -3,6 +3,7 @@ function ModeDifficile(){
 	if (++nbDeSecondesTot>playTime || (nbLoup==0 && generate==1)) {
 	    //FIN DE LA PARTIE
 	    //alert("ici");
+		jQuery("#jeuEnCours").html("Fin de la Partie");
 		scoring.update();
 		
 		var noms = readCookie("PlayerNames");
