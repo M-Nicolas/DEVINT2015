@@ -23,7 +23,7 @@ if (temporaryUserName!=null && temporaryUserScore!=null) {
     }
     TabTot.sort(compare);
     
-    for(var j=0;j<TabTot.length;j++){
+    for(var j=0;j<TabTot.length&&j<10;j++){
         $(".table").append("<tr><td>"+(j+1)+"</td><td>"+TabTot[j][1]+"</td><td>"+TabTot[j][0]+"</td><td>"+TabTot[j][2]+"</td></tr>");
     }
 }
