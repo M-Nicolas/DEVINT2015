@@ -1,13 +1,35 @@
 jQuery.noConflict();
 
 var difficulty = readCookie("Difficulty");
+var tabDifficulte = difficulty.split("//");
 //alert(difficulty);
+var listName = readCookie("PlayerNames");
+if (listName!=null) {
+    listName = listName.split("/");
+    jQuery.each(listName,function(ind,val){
+	if (val!='') {
+	    jQuery("#selectNamePlayer").append("<option>"+val+"</option>");
+	}
+    });
+}
 
-var username;
+var username='';
 jQuery("#pos-alertUser").show();
 jQuery(".btnOKPlayerName").click(function(){
-	username=jQuery('.PlayerName').val();
-	jQuery("#pos-alertUser").hide();
+	if (jQuery('.PlayerName').val()!='') {
+	    username=jQuery('.PlayerName').val();
+	}
+	if(jQuery("#selectNamePlayer").find(":selected").text()!=''){
+	    username=jQuery("#selectNamePlayer").find(":selected").text();
+	}
+	//alert(username);
+	if (username!='') {
+	    jQuery("#pos-alertUser").hide();    
+	}
+	else{
+	    alert("Veuillez rentrer votre nom s'il vous plait ou choisissez le dans la liste");
+	}
+	
 });
 
 var soundGame;
@@ -113,7 +135,7 @@ jQuery("body").keydown(function(e){
 				seconds--;
 				$gauge.val(seconds);
 			}, 1000);
-			switch(difficulty){
+			switch(tabDifficulte[tabDifficulte.length-2]){
 				case "facile":
 					loopGame = setInterval(ModeFacile, 1000); // en milliseconds (loop game)
 				break;

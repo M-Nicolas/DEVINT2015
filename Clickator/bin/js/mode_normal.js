@@ -36,8 +36,6 @@ function ModeNormal(){
 	}
 	nbDeSecondesLoup++;
 	nbDeSecondes++;
-	var xTEMP=Math.floor((Math.random() * (canvasWidth-100)) + 1)+50;
-	var yTEMP=Math.floor((Math.random() * (heightScreen-100)) + 1)+50;
 	if (generate==0) {
 		generate=1;
 	    //var xTEMPLoup=Math.floor((Math.random() * (canvasWidth-100)) + 1)+50;
@@ -79,10 +77,10 @@ function ModeNormal(){
 		});
 	    },10);*/
 	}
-	if (nbMoutons<5) {
+	if (nbMoutons<1) {
 		nbTotMoutons++;
 		nbMoutons++;
-		var ok=0;
+		/*var ok=0;
 		while(ok==0){
 			if (xTEMP>((widthScreen/2)-250) && xTEMP<((widthScreen/2)-250)+(4*60)+150) {
 				if (yTEMP > ((heightScreen/2)-40)-50 && yTEMP < (heightScreen/2)+50) {
@@ -96,14 +94,16 @@ function ModeNormal(){
 			else{
 				ok=1;
 			}
-		}
+		}*/
+		xTemp=0;
+		yTemp=0;
 		jQuery('#gameArea').drawImage({
 			layer:true,
 			groups: ['Moutons'],
 			name:'mout'+nbTotMoutons,
 			source: 'Image/loup.png',
 			scale: 0.35,
-			x:xTEMP  , y: yTEMP,
+			x:0  , y: 0,
 			click: function(layer){
 				var tmp = getPixelColor();
 				if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
@@ -127,20 +127,33 @@ function ModeNormal(){
 		});
 	}
 	
-	/*
-	if (nbDeSecondesLoup%3==0) {
-		var lstLoups = jQuery("#gameArea").getLayerGroup('Loups');
-		var tmpLoup = jQuery("#gameArea").getLayer(lstLoups[0]);
-		tmpLoup.width=350;
-	    tmpLoup.height=350;
-	    jQuery('#gameArea').animateLayer(tmpLoup.name, {
-		    width: '-=350',
-		    height: '-=350'
-	    });
-	    setTimeout(function(){jQuery("#gameArea").removeLayer(lstLoups[0]).drawLayers()},700);
-		nbLoup--;
-	}*/
+	var HMOUTON = 150;
+	var LMOUTON = 150;
+	var XMOUTON = jQuery('#gameArea').getLayer("loup1").x;
+	var YMOUTON = jQuery('#gameArea').getLayer("loup1").y;
+		
+	var xTEMP=Math.floor((Math.random() * 100) + 1);
+	var yTEMP=Math.floor((Math.random() * 100) + 1);
+	//alert("XTEMP : "+xTEMP);
+	//alert(jQuery('#gameArea').getLayer('mout1').y);
 	
+	//alert("H : "+HMOUTON+"  L: "+LMOUTON);
+	var LeLoup = jQuery('#gameArea').getLayer('mout1');
+	if (LeLoup.x>(XMOUTON - LMOUTON/2) && LeLoup.x<(XMOUTON+LMOUTON/2) && LeLoup.y>(YMOUTON-HMOUTON/2) && LeLoup.y<(YMOUTON+HMOUTON/2)) {
+		alert("MANGE");
+	}
+	if(jQuery('#gameArea').getLayer('mout1').x>(jQuery(window).width()/2)){
+		xTEMP=-xTEMP;
+	}
+	if (jQuery('#gameArea').getLayer('mout1').y>(jQuery(window).height()/2)) {
+		yTEMP=-yTEMP;
+	}
+	//alert("XTEMP : "+xTEMP);
+	jQuery('#gameArea').animateLayer('mout1', {
+		x: '+='+xTEMP,
+		y: '+='+yTEMP
+	});
+	/*
 	if (nbDeSecondes==2) {
 	    var lstMoutons = jQuery("#gameArea").getLayerGroup('Moutons');
 	    var tmpLay2 = jQuery("#gameArea").getLayer(lstMoutons[0]);
@@ -156,5 +169,5 @@ function ModeNormal(){
 	    setTimeout(function(){jQuery("#gameArea").removeLayer(lstMoutons[0]).drawLayers();},1000);
 	    nbDeSecondes=0;
 	    nbMoutons--;
-	}
+	}*/
 }
