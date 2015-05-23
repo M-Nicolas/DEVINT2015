@@ -4,6 +4,8 @@ var difficulty = readCookie("Difficulty");
 var tabDifficulte = difficulty.split("//");
 //alert(difficulty);
 var listName = readCookie("PlayerNames");
+var idDog = readCookie("Dog");
+selectionnerChien(idDog);
 if (listName!=null) {
     listName = listName.split("/");
     jQuery.each(listName,function(ind,val){
@@ -31,6 +33,47 @@ jQuery(".btnOKPlayerName").click(function(){
 	}
 	
 });
+
+function selectionnerChien(id) {
+	if (id == 1) {
+		jQuery(".cadreChien1").css( "border", '3px solid red' );
+		jQuery(".cadreChien2").css( "border", "none" );
+		jQuery(".cadreChien3").css( "border", "none" );
+		jQuery(".cadreChien4").css( "border", "none" );
+		jQuery("#gameArea").css("cursor", "url(Image/curseur.png) 64 64, default");
+	}
+		else if (id == 2) {
+		jQuery(".cadreChien1").css( "border", "none" );
+		jQuery(".cadreChien2").css( "border", "3px solid red" );
+		jQuery(".cadreChien3").css( "border", "none" );
+		jQuery(".cadreChien4").css( "border", "none" );
+		jQuery("#gameArea").css("cursor", "url(Image/dogmin.png) 64 64, default");
+	}
+		else if (id == 3) {
+		jQuery(".cadreChien1").css( "border", "none" );
+		jQuery(".cadreChien2").css( "border", "none" );
+		jQuery(".cadreChien3").css( "border", "3px solid red" );
+		jQuery(".cadreChien4").css( "border", "none" );
+		jQuery("#gameArea").css("cursor", "url(Image/dog2min.png) 64 64, default");
+	}
+		else if (id == 4) {
+		jQuery(".cadreChien1").css( "border", "none" );
+		jQuery(".cadreChien2").css( "border", "none" );
+		jQuery(".cadreChien3").css( "border", "none" );
+		jQuery(".cadreChien4").css( "border", "3px solid red" );
+		jQuery("#gameArea").css("cursor", "url(Image/dog3min.png) 64 64, default");
+	}
+	else {
+		id = 0;
+	}
+	createCookie("Dog", id, 400);
+	
+//	jQuery('#gameArea').css('cursor', 'url(../Image/dog.png) 64 64, default');
+	/*#gameArea{
+    background-color: white;
+    cursor: url("../Image/curseur.png") 64 64, default;
+}*/
+}
 
 var soundGame;
 function lire_son(src) {
