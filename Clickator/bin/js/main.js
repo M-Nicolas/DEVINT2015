@@ -1,7 +1,7 @@
 jQuery.noConflict();
 
 var difficulty = readCookie("Difficulty");
-var tabDifficulte = difficulty.split("//");
+var DifficulteEnCours = readCookie("Difficulte");
 //alert(difficulty);
 var listName = readCookie("PlayerNames");
 if (listName!=null) {
@@ -135,7 +135,7 @@ jQuery("body").keydown(function(e){
 				seconds--;
 				$gauge.val(seconds);
 			}, 1000);
-			switch(tabDifficulte[tabDifficulte.length-2]){
+			switch(DifficulteEnCours){
 				case "facile":
 					loopGame = setInterval(ModeFacile, 1000); // en milliseconds (loop game)
 				break;

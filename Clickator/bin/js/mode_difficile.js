@@ -1,4 +1,29 @@
+function containsInArr(arr,elem){
+   for (var i in arr){
+       if (arr[i] == elem) return true;
+   }
+   return false;
+}
+
+
+var moutTue = [];
+function CheckHitBox(LeLoup){
+	var HMOUTON = 150;
+	var LMOUTON = 150;
+	
+	jQuery.each(jQuery("#gameArea").getLayerGroup("Loups"),function(key,LeMout){
+		if (LeLoup.x>(LeMout.x - LMOUTON/2) && LeLoup.x<(LeMout.x+LMOUTON/2) && LeLoup.y>(LeMout.y-HMOUTON/2) && LeLoup.y<(LeMout.y+HMOUTON/2)){
+			jQuery('#gameArea').removeLayer(LeMout.name);
+			jQuery('#gameArea').removeLayer(LeLoup.name);
+			nbMoutons--;
+			nbLoup--;
+			return;//break like
+		}
+	});
+}
+
 function ModeDifficile(){
+	//alert("ici Normal")
 	//alert(playTime);
 	if (++nbDeSecondesTot>playTime || (nbLoup==0 && generate==1)) {
 	    //FIN DE LA PARTIE
@@ -21,9 +46,6 @@ function ModeDifficile(){
 		createCookie("PlayerScores", scores, 400);
 		createCookie("Difficulty", difficulty, 400);
 		
-		//alert(noms+" "+scores+" "+difficulty);
-		
-		
 	    clearInterval(countDownTimer);
 	    
 	    jQuery("#HSPop").text(jQuery("#score").text());
@@ -35,12 +57,8 @@ function ModeDifficile(){
 	}
 	nbDeSecondesLoup++;
 	nbDeSecondes++;
-	var xTEMP=Math.floor((Math.random() * (canvasWidth-100)) + 1)+50;
-	var yTEMP=Math.floor((Math.random() * (heightScreen-100)) + 1)+50;
 	if (generate==0) {
 		generate=1;
-	    //var xTEMPLoup=Math.floor((Math.random() * (canvasWidth-100)) + 1)+50;
-	    //var yTEMPLoup=Math.floor((Math.random() * (heightScreen-100)) + 1)+50;
 		for(var deb=0;deb<5;deb++){
 			nbLoup++;
 			nbTotLoups++;
@@ -63,46 +81,34 @@ function ModeDifficile(){
 				}
 			});
 		}
-	    /*
-	    var tmpl = jQuery("#gameArea").getLayer('loup'+nbTotLoups);
-	    var tmpWidthMout = tmpl.width;
-	    var tmpHeightMout = tmpl.height;
-	    tmpl.width=0;//350
-	    tmpl.height=0;//350
-	    
-		
-	    setTimeout(function(){
-		jQuery('#gameArea').animateLayer('loup'+nbTotLoups, {
-			height: '+='+tmpHeightMout,
-			width: '+='+tmpWidthMout
-		});
-	    },10);*/
 	}
-	if (nbMoutons<5) {
+	if (nbMoutons<2) {
 		nbTotMoutons++;
 		nbMoutons++;
-		var ok=0;
-		while(ok==0){
-			if (xTEMP>((widthScreen/2)-250) && xTEMP<((widthScreen/2)-250)+(4*60)+150) {
-				if (yTEMP > ((heightScreen/2)-40)-50 && yTEMP < (heightScreen/2)+50) {
-					xTEMP=Math.floor((Math.random() * (canvasWidth-100)) + 1)+50;
-					yTEMP=Math.floor((Math.random() * (heightScreen-100)) + 1)+50;
-				}
-				else{
-					ok=1;
-				}
-			}
-			else{
-				ok=1;
-			}
+		xTemp=0;
+		yTemp=0;
+		var xDroite;
+		var yRand;
+		if (Math.floor((Math.random() * 2) + 0)==0) {
+			xDroite=0
 		}
+		else{
+			xDroite = jQuery("#gameArea").width();
+		}
+		if (Math.floor((Math.random() * 2) + 0)==0) {
+			yRand=jQuery("#gameArea").height();
+		}
+		else{
+			yRand=0;
+		}
+		
 		jQuery('#gameArea').drawImage({
 			layer:true,
 			groups: ['Moutons'],
 			name:'mout'+nbTotMoutons,
 			source: 'Image/loup.png',
 			scale: 0.35,
-			x:xTEMP  , y: yTEMP,
+			x:xDroite  , y: yRand,
 			click: function(layer){
 				var tmp = getPixelColor();
 				if (!(tmp[0]==0 && tmp[1]==0 && tmp[2]==0 && tmp[3]==0)) {
@@ -126,34 +132,25 @@ function ModeDifficile(){
 		});
 	}
 	
-	/*
-	if (nbDeSecondesLoup%3==0) {
-		var lstLoups = jQuery("#gameArea").getLayerGroup('Loups');
-		var tmpLoup = jQuery("#gameArea").getLayer(lstLoups[0]);
-		tmpLoup.width=350;
-	    tmpLoup.height=350;
-	    jQuery('#gameArea').animateLayer(tmpLoup.name, {
-		    width: '-=350',
-		    height: '-=350'
-	    });
-	    setTimeout(function(){jQuery("#gameArea").removeLayer(lstLoups[0]).drawLayers()},700);
-		nbLoup--;
-	}*/
+	var lesLoups = jQuery('#gameArea').getLayerGroup('Moutons');
 	
-	if (nbDeSecondes==2) {
-	    var lstMoutons = jQuery("#gameArea").getLayerGroup('Moutons');
-	    var tmpLay2 = jQuery("#gameArea").getLayer(lstMoutons[0]);
-	    
-	    tmpLay2.width=350;
-	    tmpLay2.height=350;
-	    jQuery('#gameArea').animateLayer(tmpLay2.name, {
-		    width: '-=350',
-		    height: '-=350'
-	    });
-	    
-	    
-	    setTimeout(function(){jQuery("#gameArea").removeLayer(lstMoutons[0]).drawLayers();},1000);
-	    nbDeSecondes=0;
-	    nbMoutons--;
-	}
+	jQuery.each(lesLoups,function(ind,LeLoup){
+		var xTEMP=Math.floor((Math.random() * 100) + 50);
+		var yTEMP=Math.floor((Math.random() * 100) + 50);
+		
+			
+		if(LeLoup.x>(jQuery(window).width()/2)){
+			xTEMP=-xTEMP;
+		}
+		if (LeLoup.y>(jQuery(window).height()/2)) {
+			yTEMP=-yTEMP;
+		}
+		
+		jQuery('#gameArea').animateLayer(LeLoup.name, {
+			x: '+='+xTEMP,
+			y: '+='+yTEMP
+		});
+		
+		CheckHitBox(LeLoup);
+	});
 }
