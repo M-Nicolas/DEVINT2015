@@ -1,11 +1,3 @@
-function containsInArr(arr,elem){
-   for (var i in arr){
-       if (arr[i] == elem) return true;
-   }
-   return false;
-}
-
-
 var moutTue = [];
 function CheckHitBoxNormal(LeLoup){
 	var HMOUTON = 150;
@@ -33,6 +25,14 @@ function ModeNormal(){
 		
 		var noms = readCookie("PlayerNames");
 		var scores = readCookie("PlayerScores");
+		
+		if (jQuery("#score").text()<0) {
+			setTimeout(function(){speak.play("Votre score est de moins"+jQuery("#score").text()+" points", "fr")},1000);
+		}
+		else{
+			setTimeout(function(){speak.play("Votre score est de "+jQuery("#score").text()+" points", "fr")},1000);
+		}
+		
 		if (noms == null) {
 			noms = username + "//";
 			scores = jQuery("#score").text() +  "//";

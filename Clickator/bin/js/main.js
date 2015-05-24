@@ -1,5 +1,12 @@
 jQuery.noConflict();
 
+function containsInArr(arr,elem){
+   for (var i in arr){
+       if (arr[i] == elem) return true;
+   }
+   return false;
+}
+
 var difficulty = readCookie("Difficulty");
 var DifficulteEnCours = readCookie("Difficulte");
 //alert(difficulty);
@@ -8,8 +15,10 @@ var idDog = readCookie("Dog");
 selectionnerChien(idDog);
 if (listName!=null) {
     listName = listName.split("/");
+    var nomdejainscrit = [];
     jQuery.each(listName,function(ind,val){
-	if (val!='') {
+	if (val!='' && !(containsInArr(nomdejainscrit,val))) {
+	    nomdejainscrit.push(val);
 	    jQuery("#selectNamePlayer").append("<option>"+val+"</option>");
 	}
     });
@@ -35,44 +44,38 @@ jQuery(".btnOKPlayerName").click(function(){
 });
 
 function selectionnerChien(id) {
-	if (id == 1) {
-		jQuery(".cadreChien1").css( "border", '3px solid red' );
-		jQuery(".cadreChien2").css( "border", "none" );
-		jQuery(".cadreChien3").css( "border", "none" );
-		jQuery(".cadreChien4").css( "border", "none" );
-		jQuery("#gameArea").css("cursor", "url(Image/curseur.png) 64 64, default");
-	}
-		else if (id == 2) {
-		jQuery(".cadreChien1").css( "border", "none" );
-		jQuery(".cadreChien2").css( "border", "3px solid red" );
-		jQuery(".cadreChien3").css( "border", "none" );
-		jQuery(".cadreChien4").css( "border", "none" );
-		jQuery("#gameArea").css("cursor", "url(Image/dogmin.png) 64 64, default");
-	}
-		else if (id == 3) {
-		jQuery(".cadreChien1").css( "border", "none" );
-		jQuery(".cadreChien2").css( "border", "none" );
-		jQuery(".cadreChien3").css( "border", "3px solid red" );
-		jQuery(".cadreChien4").css( "border", "none" );
-		jQuery("#gameArea").css("cursor", "url(Image/dog2min.png) 64 64, default");
-	}
-		else if (id == 4) {
-		jQuery(".cadreChien1").css( "border", "none" );
-		jQuery(".cadreChien2").css( "border", "none" );
-		jQuery(".cadreChien3").css( "border", "none" );
-		jQuery(".cadreChien4").css( "border", "3px solid red" );
-		jQuery("#gameArea").css("cursor", "url(Image/dog3min.png) 64 64, default");
-	}
-	else {
-		id = 0;
-	}
-	createCookie("Dog", id, 400);
-	
-//	jQuery('#gameArea').css('cursor', 'url(../Image/dog.png) 64 64, default');
-	/*#gameArea{
-    background-color: white;
-    cursor: url("../Image/curseur.png") 64 64, default;
-}*/
+    if (id == 1) {
+	    jQuery(".cadreChien1").css( "border", '3px solid red' );
+	    jQuery(".cadreChien2").css( "border", "none" );
+	    jQuery(".cadreChien3").css( "border", "none" );
+	    jQuery(".cadreChien4").css( "border", "none" );
+	    jQuery("#gameArea").css("cursor", "url(Image/curseur.png) 64 64, default");
+    }
+	    else if (id == 2) {
+	    jQuery(".cadreChien1").css( "border", "none" );
+	    jQuery(".cadreChien2").css( "border", "3px solid red" );
+	    jQuery(".cadreChien3").css( "border", "none" );
+	    jQuery(".cadreChien4").css( "border", "none" );
+	    jQuery("#gameArea").css("cursor", "url(Image/dogmin.png) 64 64, default");
+    }
+	    else if (id == 3) {
+	    jQuery(".cadreChien1").css( "border", "none" );
+	    jQuery(".cadreChien2").css( "border", "none" );
+	    jQuery(".cadreChien3").css( "border", "3px solid red" );
+	    jQuery(".cadreChien4").css( "border", "none" );
+	    jQuery("#gameArea").css("cursor", "url(Image/dog2min.png) 64 64, default");
+    }
+	    else if (id == 4) {
+	    jQuery(".cadreChien1").css( "border", "none" );
+	    jQuery(".cadreChien2").css( "border", "none" );
+	    jQuery(".cadreChien3").css( "border", "none" );
+	    jQuery(".cadreChien4").css( "border", "3px solid red" );
+	    jQuery("#gameArea").css("cursor", "url(Image/dog3min.png) 64 64, default");
+    }
+    else {
+	    id = 0;
+    }
+    createCookie("Dog", id, 400);
 }
 
 var soundGame;
@@ -169,13 +172,15 @@ var loopGame;
 var enCours = 0;
 jQuery("body").keydown(function(e){
     if (e.keyCode==32) {
-		if (enCours==0) {
+		if (enCours==0 && jQuery("#pos-alertUser").css("display")=="none") {
 			jQuery("#jeuEnCours").html("Jeu en cours ...");
 			enCours=1;
 			e.preventDefault();
 			countDownTimer = setInterval(function() {
 				var seconds = $gauge.val();
-				seconds--;
+				if (seconds>0) {
+				    seconds--;
+				}
 				$gauge.val(seconds);
 			}, 1000);
 			switch(DifficulteEnCours){
@@ -216,7 +221,7 @@ var nbDeSecondesTot=0;
 var nbLoup=0;
 var nbTotLoups=0;
 var nbDeSecondesLoup=0;
-var playTime = 30; // Temps de jeu en secondes
+var playTime = 60; // Temps de jeu en secondes
 var scoreAdd=5;
 var generate=0;
 var nbLoup=0;

@@ -6,6 +6,13 @@ function ModeFacile(){
 		jQuery("#jeuEnCours").html("Fin de la Partie");
 		scoring.update();
 		
+		if (jQuery("#score").text()<0) {
+			setTimeout(function(){speak.play("Votre score est de moins"+jQuery("#score").text()+" points", "fr")},1000);
+		}
+		else{
+			setTimeout(function(){speak.play("Votre score est de "+jQuery("#score").text()+" points", "fr")},1000);
+		}
+		
 		var noms = readCookie("PlayerNames");
 		var scores = readCookie("PlayerScores");
 		if (noms == null) {
