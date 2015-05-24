@@ -7,6 +7,8 @@ function containsInArr(arr,elem){
    return false;
 }
 
+
+
 var difficulty = readCookie("Difficulty");
 var DifficulteEnCours = readCookie("Difficulte");
 //alert(difficulty);
@@ -27,20 +29,20 @@ if (listName!=null) {
 var username='';
 jQuery("#pos-alertUser").show();
 jQuery(".btnOKPlayerName").click(function(){
-	if (jQuery('.PlayerName').val()!='') {
-	    username=jQuery('.PlayerName').val();
-	}
-	if(jQuery("#selectNamePlayer").find(":selected").text()!=''){
-	    username=jQuery("#selectNamePlayer").find(":selected").text();
-	}
-	//alert(username);
-	if (username!='') {
-	    jQuery("#pos-alertUser").hide();    
-	}
-	else{
-	    alert("Veuillez rentrer votre nom s'il vous plait ou choisissez le dans la liste");
-	}
-	
+    if (jQuery('.PlayerName').val()!='') {
+	username=jQuery('.PlayerName').val();
+    }
+    if(jQuery("#selectNamePlayer").find(":selected").text()!=''){
+	username=jQuery("#selectNamePlayer").find(":selected").text();
+    }
+    //alert(username);
+    if (username!='') {
+	jQuery("#pos-alertUser").hide();    
+    }
+    else{
+	alert("Veuillez rentrer votre nom s'il vous plait ou choisissez le dans la liste");
+    }
+    lire_son("sounds/menu/explications_jeu.ogg");
 });
 
 function selectionnerChien(id) {
@@ -172,6 +174,7 @@ var loopGame;
 var enCours = 0;
 jQuery("body").keydown(function(e){
     if (e.keyCode==32) {
+	soundGame.pause();
 		if (enCours==0 && jQuery("#pos-alertUser").css("display")=="none") {
 			jQuery("#jeuEnCours").html("Jeu en cours ...");
 			enCours=1;
@@ -202,6 +205,7 @@ jQuery("body").keydown(function(e){
     if (e.keyCode==114) {
 	e.preventDefault();
 	var colorBack = jQuery("#gameArea").css("background-color");
+	//alert(colorBack);
 	if(colorBack=="rgb(104, 183, 91)"){
 	    jQuery("#gameArea").css("background-color","#FFBE93");
 	}
@@ -209,6 +213,12 @@ jQuery("body").keydown(function(e){
 	    jQuery("#gameArea").css("background-color","#ADB9FF");
 	}
 	else if (colorBack=="rgb(173, 185, 255)") {
+	    jQuery("#gameArea").css("background-color","#FFFFFF");
+	}
+	else if (colorBack=="rgb(255, 255, 255)") {
+	    jQuery("#gameArea").css("background-color","#000000");
+	}
+	else if (colorBack=="rgb(0, 0, 0)") {
 	    jQuery("#gameArea").css("background-color","#68B75B");
 	}
     }
