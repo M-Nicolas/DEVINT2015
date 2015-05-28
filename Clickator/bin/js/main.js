@@ -25,6 +25,10 @@ if (listName!=null) {
 	}
     });
 }
+if (DifficulteEnCours=="difficile") {
+    jQuery("#nbDeLoupsSpawn").show();
+    var nbDeLoupsWhoSpawn = jQuery("#nbDeLoupsSpawn").find(":selected").text();
+}
 
 var username='';
 jQuery("#pos-alertUser").show();

@@ -81,7 +81,8 @@ function ModeDifficile(){
 			});
 		}
 	}
-	if (nbMoutons<2) {
+	//alert(nbDeLoupsWhoSpawn);
+	if (nbMoutons<nbDeLoupsWhoSpawn) {
 		nbTotMoutons++;
 		nbMoutons++;
 		xTemp=0;
