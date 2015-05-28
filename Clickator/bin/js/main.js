@@ -178,7 +178,9 @@ var loopGame;
 var enCours = 0;
 jQuery("body").keydown(function(e){
     if (e.keyCode==32) {
-	soundGame.pause();
+		soundGame.pause();
+		soundOfTheGame = new Audio("sounds/game/themeofthewolfwhodiedunexpectedly.mp3");
+		soundOfTheGame.play();
 		if (enCours==0 && jQuery("#pos-alertUser").css("display")=="none") {
 			jQuery("#jeuEnCours").html("Jeu en cours ...");
 			enCours=1;
